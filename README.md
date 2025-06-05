@@ -70,8 +70,6 @@ Si prefieres **vista de detalle separada**:
 **Archivo:** `src/app/components/user-detail/user-detail.component.ts`
 
 #### 3.1 Captura del ID desde la URL
-El componente ya captura automáticamente el ID de la URL.
-
 #### 3.2 Carga de datos del usuario
 - Implementar la lógica para obtener un usuario específico por ID
 - Usar el servicio para consumir la API
