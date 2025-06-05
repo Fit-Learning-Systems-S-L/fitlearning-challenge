@@ -21,122 +21,66 @@ La aplicación está organizada con **routing** y componentes separados:
 - **UserCardComponent**: Tarjeta individual de usuario
 - **UserModalComponent**: Modal para detalles (opcional)
 
----
-
-## 👥 Datos de Demostración
-
-**¡La aplicación ya muestra 2 usuarios ficticios!** Esto te permite ver cómo se ve la interfaz mientras implementas la funcionalidad real.
-
-Cuando ejecutes `ng serve`, verás:
-- ✅ Ana García López (Madrid)
-- ✅ Carlos Rodríguez Martín (Barcelona)
-- ✅ Contador: "0 usuarios"
-- ✅ Búsqueda funcional (prueba escribiendo "Ana" o "Carlos")
-- ✅ Navegación a `/users` automática
-- ✅ Clic en tarjetas navega a `/user/1` o `/user/2`
-
-**Tu tarea:** Reemplazar estos datos ficticios con datos reales de la API.
-
 
 ## 🔧 TAREA 1: Implementar el Servicio de Usuarios
 
-**Archivo:** `src/app/services/user.service.ts`
+### Funcionalidades requeridas:
 
-### Métodos a implementar:
+#### 1.1 Obtener todos los usuarios
+- Crear un método que retorne un Observable con la lista completa de usuarios
+- Consumir la API: `https://jsonplaceholder.typicode.com/users`
+- Usar HttpClient para realizar la petición GET
 
-#### 1.1 `getUsers()`
-```typescript
-getUsers(): Observable<User[]> {
-  // Implementar llamada HTTP GET para obtener todos los usuarios
-  // URL: https://jsonplaceholder.typicode.com/users
-}
-```
+#### 1.2 Obtener un usuario específico
+- Crear un método que reciba un ID y retorne un Observable con ese usuario
+- Consumir la API: `https://jsonplaceholder.typicode.com/users/{id}`
+- Manejar el caso cuando el usuario no existe
 
-#### 1.2 `getUserById(id: number)`
-```typescript
-getUserById(id: number): Observable<User> {
-  // Implementar llamada HTTP GET para obtener un usuario específico
-  // URL: https://jsonplaceholder.typicode.com/users/{id}
-}
-```
-
+---
 
 ## 🔧 TAREA 2: Implementar la Lista de Usuarios
 
 **Archivo:** `src/app/components/user-list/user-list.component.ts`
 
-### Métodos a implementar:
+### Funcionalidades requeridas:
 
-#### 2.1 `ngOnInit()`
-```typescript
-ngOnInit(): void {
-  // Descomenta la línea: this.loadUsers();
-  // Esto reemplazará los datos ficticios con datos reales de la API
-}
-```
+#### 2.1 Inicialización del componente
+- Al cargar el componente, debe obtener la lista de usuarios desde la API
+- Mostrar estados de carga mientras se obtienen los datos
 
-#### 2.2 `loadUsers()`
-```typescript
-loadUsers(): void {
-  // 1. Establecer isLoading = true
-  // 2. Establecer hasError = false
-  // 3. Llamar al servicio userService.getUsers()
-  // 4. Suscribirse al Observable
-  // 5. En caso de éxito: 
-  //    - Asignar la respuesta a this.users
-  //    - Asignar la respuesta a this.filteredUsers
-  //    - Establecer isLoading = false
-  // 6. En caso de error:
-  //    - Establecer hasError = true
-  //    - Establecer isLoading = false
-}
-```
+#### 2.2 Carga de usuarios desde la API
+- Implementar la lógica para obtener usuarios del servicio
+- Manejar estados de carga (loading, success, error)
+- Actualizar tanto la lista completa como la lista filtrada
+- Mostrar mensajes de error apropiados si la API falla
 
-#### 2.3 `onSearch()` (Opcional - ya funciona con datos ficticios)
-```typescript
-onSearch(): void {
-  // El método ya está implementado para la demostración
-  // Puedes dejarlo como está o mejorarlo si quieres
-}
-```
+#### 2.3 Funcionalidad de búsqueda (Opcional)
+- Debe filtrar usuarios por nombre en tiempo real
+- Debe ser insensible a mayúsculas/minúsculas
 
 ---
 
 ## 🔧 TAREA 3: Elegir Opción de Detalles
 
 ### Opción A: Modal (Más Simple)
-
-Si prefieres usar **modal emergente**:
-
-1. En `user-list.component.ts`, usa el método `onUserSelectedModal()` en lugar de `onUserSelected()`
-2. El modal ya está implementado y funcionará automáticamente
-
+Si prefieres **modal emergente**:
+**Archivo:** `src/app/components/user-modal/user-modal.component.ts`
 ### Opción B: Vista de Detalle con Routing (Más Avanzada)
-
 Si prefieres **vista de detalle separada**:
-
 **Archivo:** `src/app/components/user-detail/user-detail.component.ts`
 
-#### 3.1 `ngOnInit()` - Ya implementado
-El componente ya captura el ID de la URL automáticamente.
+#### 3.1 Captura del ID desde la URL
+El componente ya captura automáticamente el ID de la URL.
 
-#### 3.2 `loadUser(id: number)`
-```typescript
-loadUser(id: number): void {
-  // 1. Establecer isLoading = true
-  // 2. Establecer hasError = false
-  // 3. Llamar al servicio userService.getUserById(id)
-  // 4. Suscribirse al Observable
-  // 5. En caso de éxito: asignar usuario y establecer isLoading = false
-  // 6. En caso de error: establecer hasError = true e isLoading = false
-}
-```
+#### 3.2 Carga de datos del usuario
+- Implementar la lógica para obtener un usuario específico por ID
+- Usar el servicio para consumir la API
+- Manejar estados de carga y error
+- Mostrar mensaje apropiado si el usuario no existe
 
-#### 3.3 Activar la carga
-Descomenta la línea en `ngOnInit()`:
-```typescript
-// this.loadUser(this.userId);
-```
+#### 3.3 Activación de la funcionalidad
+- Activar la carga automática del usuario al inicializar el componente
+- Asegurar que se muestre la información correcta
 
 ---
 
@@ -144,12 +88,15 @@ Descomenta la línea en `ngOnInit()`:
 
 **Archivo:** `src/app/app.component.ts`
 
-Puedes implementar el método `loadUsersForCounter()` para que el header muestre el número correcto de usuarios.
+- Implementar la lógica para mostrar el número correcto de usuarios en el header
+- Puede ser un contador simple o más elaborado
+- Debe actualizarse cuando se cargan los datos reales
 
 ---
 
 ## ✅ Criterios de Evaluación
 
+### Funcionalidad Básica
 - [ ] La aplicación carga y muestra usuarios reales de la API (no los ficticios)
 - [ ] El buscador filtra usuarios por nombre en tiempo real
 - [ ] Los detalles de usuario se muestran (modal O vista de detalle)
@@ -167,6 +114,7 @@ Puedes implementar el método `loadUsersForCounter()` para que el header muestre
 - [ ] Manejo de errores
 - [ ] Uso de async/await o Observables según corresponda
 - [ ] Comentarios en código complejo (opcional)
+- [ ] Creatividad en la implementación de soluciones
 
 ---
 
@@ -193,6 +141,17 @@ Puedes implementar el método `loadUsersForCounter()` para que el header muestre
    - Buscar con texto que no existe
    - Buscar con espacios en blanco
    - Verificar que la búsqueda no es case sensitive
+   - Probar navegación directa a URLs como `/user/999`
+
+---
+
+## 💡 Consejos y Libertad Creativa
+
+- **Sé creativo:** No hay una única forma correcta de implementar estas funcionalidades
+- **Nomenclatura:** Usa los nombres de métodos y propiedades que consideres más apropiados
+- **Arquitectura:** Puedes reorganizar el código si crees que hay una mejor estructura
+- **Funcionalidades extra:** Si tienes tiempo, puedes agregar mejoras adicionales
+- **Estilos:** Puedes modificar los estilos CSS/SCSS si quieres mejorar la apariencia
 
 ---
 
@@ -208,16 +167,16 @@ Puedes implementar el método `loadUsersForCounter()` para que el header muestre
 ## ⏰ Tiempo Estimado
 
 ### Opción Modal (Más Simple):
-- **Tarea 1 (Servicio):** 10-15 minutos
-- **Tarea 2 (Lista):** 15-20 minutos
-- **Pruebas:** 10-15 minutos
+- **Servicio de usuarios:** 10-15 minutos
+- **Lista y búsqueda:** 15-20 minutos
+- **Pruebas y ajustes:** 10-15 minutos
 - **Total:** 35-50 minutos
 
 ### Opción Vista de Detalle (Más Avanzada):
-- **Tarea 1 (Servicio):** 10-15 minutos
-- **Tarea 2 (Lista):** 15-20 minutos
-- **Tarea 3 (Detalle):** 15-20 minutos
-- **Pruebas:** 10-15 minutos
+- **Servicio de usuarios:** 10-15 minutos
+- **Lista y búsqueda:** 15-20 minutos
+- **Vista de detalle:** 15-20 minutos
+- **Pruebas y ajustes:** 10-15 minutos
 - **Total:** 50-70 minutos
 
 ---
@@ -231,5 +190,6 @@ Al completar estas tareas, tendrás una aplicación funcional que:
 - Muestra detalles de usuario (modal o vista separada)
 - Maneja estados de carga y error
 - Demuestra conocimientos de Angular y routing
+- Refleja tu creatividad y estilo de programación
 
 **¡Buena suerte! 💪**
