@@ -1,0 +1,35 @@
+<div class="modal-overlay" (click)="onOverlayClick($event)">
+  <div class="modal-content">
+    <button class="modal-close" (click)="onCloseModal()">&times;</button>
+
+    <div class="user-detail-header">
+      <div class="user-detail-name">{{ user.name }}</div>
+    </div>
+
+    <div class="user-detail-section">
+      <span class="user-detail-label">📞 Teléfono:</span>
+      <div class="user-detail-value">{{ user.phone }}</div>
+    </div>
+
+    <div class="user-detail-section">
+      <span class="user-detail-label">🏠 Dirección:</span>
+      <div class="user-detail-value">
+        {{ user.address.street }}, {{ user.address.suite }}<br>
+        {{ user.address.city }}, {{ user.address.zipcode }}
+      </div>
+    </div>
+
+    <div class="user-detail-section">
+      <span class="user-detail-label">🏢 Empresa:</span>
+      <div class="user-detail-value">
+        <strong>{{ user.company.name }}</strong><br>
+        <em>"{{ user.company.catchPhrase }}"</em>
+      </div>
+    </div>
+
+    <div class="user-detail-section">
+      <span class="user-detail-label">🌐 Sitio Web:</span>
+      <div class="user-detail-value">{{ user.website }}</div>
+    </div>
+  </div>
+</div>

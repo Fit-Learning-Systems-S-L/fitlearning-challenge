@@ -1,0 +1,18 @@
+<div class="app-container">
+  <!-- Header Simple -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo-section">
+        <img src="assets/images/logo_empresa.jpg" alt="Logo" class="company-logo">
+        <span class="app-title">Usuarios</span>
+      </div>
+      <!-- TODO: Implementar el contador de usuarios-->
+      <div class="user-count">
+        {{ 0 }} usuarios
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido dinámico por routing -->
+  <router-outlet></router-outlet>
+</div>

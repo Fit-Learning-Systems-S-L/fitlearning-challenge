@@ -1,0 +1,40 @@
+<!-- Contenido Principal -->
+<main class="main-content">
+  <!-- Barra de Búsqueda -->
+  <!-- TODO: Implementar la barra de búsqueda-->
+  <div class="search-section">
+    <div class="search-box">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar usuario..."
+      >
+    </div>
+  </div>
+
+  <!-- Estados de Carga y Error -->
+  <!-- TODO: Implementar los estados de carga y error-->
+  <div class="loading-state">
+    Cargando usuarios...
+  </div>
+
+  <!-- TODO: Implementar el estado de error-->
+  <div class="error-state">
+    Error al cargar los usuarios. Intenta de nuevo.
+  </div>
+
+  <!-- Lista de Usuarios -->
+  <!-- TODO: Implementar la lista de usuarios con el componente user-card-->
+  <div class="users-section">
+    <div class="users-list">
+      <app-user-card
+        *ngFor="let user of []">
+      </app-user-card>
+    </div>
+  </div>
+</main>
+
+<!-- Modal para Detalles del Usuario (Opción alternativa) -->
+<!-- TODO: Implementar modal con los inputs necesarios-->
+<app-user-modal>
+</app-user-modal>

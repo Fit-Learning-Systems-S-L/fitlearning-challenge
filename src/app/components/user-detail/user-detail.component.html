@@ -1,0 +1,79 @@
+<div class="user-detail-container">
+  <!-- Header con botón de regreso -->
+  <!-- TODO: Implementar el botón de regreso-->
+  <div class="detail-header">
+    <button class="back-button">
+      ← Volver a usuarios
+    </button>
+  </div>
+
+  <!-- Estado de carga -->
+  <!-- TODO: Implementar el estado de carga-->
+  <div class="loading-state">
+    Cargando usuario...
+  </div>
+
+  <!-- Estado de error -->
+  <!-- TODO: Implementar el estado de error-->
+  <div class="error-state">
+    Error al cargar el usuario.
+  </div>
+
+  <!-- Detalles del usuario -->
+  <!-- TODO: Implementar el contenido del usuario-->
+  <div class="user-detail-content" *ngIf="">
+    <div class="user-card-detail">
+      <!-- Avatar y nombre -->
+      <div class="user-header">
+        <div class="user-avatar-large">
+          {{ 'Avatar' }}
+        </div>
+        <div class="user-title">
+          <h1 class="user-name">{{ 'Nombre' }}</h1>
+          <p class="user-username">{{ 'Usuario' }}</p>
+        </div>
+      </div>
+
+      <!-- Información de contacto -->
+      <!-- TODO: Implementar la información de contacto-->
+      <div class="info-section">
+        <h2 class="section-title">Información de Contacto</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="info-label">📧 Email:</span>
+            <span class="info-value">{{ 'Email' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">📞 Teléfono:</span>
+            <span class="info-value">{{ 'Teléfono' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">🌐 Sitio Web:</span>
+            <span class="info-value">{{ 'Sitio Web' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dirección -->
+      <!-- TODO: Implementar la dirección-->
+      <div class="info-section">
+        <h2 class="section-title">Dirección</h2>
+        <div class="address-info">
+          <p>{{ 'Dirección' }}</p>
+          <p>{{ 'Ciudad' }}</p>
+        </div>
+      </div>
+
+      <!-- Empresa -->
+      <!-- TODO: Implementar la empresa-->
+      <div class="info-section">
+        <h2 class="section-title">Empresa</h2>
+        <div class="company-info">
+          <h3 class="company-name">{{ 'Compañia'}}</h3>
+          <p class="company-catchphrase">"{{ 'Captcha' }}"</p>
+          <p class="company-bs">{{ '' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
